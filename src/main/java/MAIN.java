@@ -2,6 +2,7 @@ import HerramientaAnalisisNumerico.CalculoPotenciasYmaximos;
 import HerramientaAnalisisNumerico.SumatoriaListadoNumeros;
 import AnalisisGenomico.ConteoGenes;
 import AnalisisGenomico.CalculoCombinacionesGeneticas;
+import GestionInformacionCientifica.OrganizacionDocumentos;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -102,5 +103,16 @@ public class MAIN {
             }
         });
         panel.add(combinacionesButton);
+
+        JButton ordenarDocumentosButton = new JButton("Ordenar Documentos");
+        ordenarDocumentosButton.setBounds(10, 250, 200, 25);
+        ordenarDocumentosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String rutaArchivo = JOptionPane.showInputDialog("Introduce la ruta del archivo a ordenar:");
+                OrganizacionDocumentos.ordenarDocumentos(rutaArchivo);
+            }
+        });
+        panel.add(ordenarDocumentosButton);
     }
 }
