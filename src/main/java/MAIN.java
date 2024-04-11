@@ -3,10 +3,12 @@ import HerramientaAnalisisNumerico.SumatoriaListadoNumeros;
 import AnalisisGenomico.ConteoGenes;
 import AnalisisGenomico.CalculoCombinacionesGeneticas;
 import GestionInformacionCientifica.OrganizacionDocumentos;
+import GestionInformacionCientifica.BusquedaTexto;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class MAIN {
     public static void main(String[] args) {
@@ -109,10 +111,33 @@ public class MAIN {
         ordenarDocumentosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String rutaArchivo = JOptionPane.showInputDialog("Introduce la ruta del archivo a ordenar:");
-                OrganizacionDocumentos.ordenarDocumentos(rutaArchivo);
+                JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    OrganizacionDocumentos.ordenarDocumentos(selectedFile.getPath());
+                }
             }
         });
         panel.add(ordenarDocumentosButton);
+
+        JButton buscarPalabraButton = new JButton("Buscar Palabra");
+        buscarPalabraButton.setBounds(10, 290, 200, 25);
+        buscarPalabraButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    String palabraBusqueda = JOptionPane.showInputDialog("Introduce la palabra a buscar:");
+                    BusquedaTexto buscador = new BusquedaTexto(selectedFile.getPath());
+                    boolean encontradoLineal = buscador.busquedaLineal(palabraBusqueda);
+                    boolean encontradoBinario = buscador.busquedaBinaria(palabraBusqueda);
+                    JOptionPane.showMessageDialog(null, "Resultado de la búsqueda lineal: " + encontradoLineal + "\nResultado de la búsqueda binaria: " + encontradoBinario);
+                }
+            }
+        });
+        panel.add(buscarPalabraButton);
     }
 }
