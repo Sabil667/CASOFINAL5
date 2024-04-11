@@ -1,6 +1,7 @@
 import HerramientaAnalisisNumerico.CalculoPotenciasYmaximos;
 import HerramientaAnalisisNumerico.SumatoriaListadoNumeros;
 import AnalisisGenomico.ConteoGenes;
+import AnalisisGenomico.CalculoCombinacionesGeneticas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -83,5 +84,18 @@ public class MAIN {
             }
         });
         panel.add(genesButton);
+
+        JButton combinacionesButton = new JButton("Calcular combinaciones genéticas");
+        combinacionesButton.setBounds(10, 210, 250, 25);
+        combinacionesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String input = JOptionPane.showInputDialog("Introduce el número de generaciones:");
+                int generaciones = Integer.parseInt(input);
+                int resultadoCombinaciones = CalculoCombinacionesGeneticas.calcularCombinaciones(generaciones);
+                JOptionPane.showMessageDialog(null, "El número de combinaciones genéticas para " + generaciones + " generaciones es: " + resultadoCombinaciones);
+            }
+        });
+        panel.add(combinacionesButton);
     }
 }
