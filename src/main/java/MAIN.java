@@ -10,4 +10,5 @@ public class MAIN {
         System.out.println("Listado de números:");
         SumatoriaListadoNumeros.listarNumeros(1, 5);
     }
+
 }
