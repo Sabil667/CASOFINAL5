@@ -66,7 +66,12 @@ public class MAIN {
         maximoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int[] datos = {1, 2, 3, 4, 5}; // Aquí puedes cambiar los datos según tus necesidades
+                String input = JOptionPane.showInputDialog("Introduce los números separados por comas:");
+                String[] numerosString = input.split(",");
+                int[] datos = new int[numerosString.length];
+                for (int i = 0; i < numerosString.length; i++) {
+                    datos[i] = Integer.parseInt(numerosString[i]);
+                }
                 int resultadoMaximo = CalculoPotenciasYmaximos.encontrarMaximo(datos);
                 JOptionPane.showMessageDialog(null, "Resultado Máximo: " + resultadoMaximo);
             }
