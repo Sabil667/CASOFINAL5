@@ -1,3 +1,4 @@
+import GestionInformacionCientifica.GestionFechas;
 import HerramientaAnalisisNumerico.CalculoPotenciasYmaximos;
 import HerramientaAnalisisNumerico.SumatoriaListadoNumeros;
 import AnalisisGenomico.ConteoGenes;
@@ -9,6 +10,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.List;
 
 public class MAIN {
     public static void main(String[] args) {
@@ -25,6 +27,29 @@ public class MAIN {
 
     private static void placeComponents(JPanel panel) {
         panel.setLayout(null);
+            GestionFechas gestionFechas = new GestionFechas();
+
+            JButton agregarFechaButton = new JButton("Agregar fecha");
+            agregarFechaButton.setBounds(10, 330, 160, 25);
+            agregarFechaButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String fecha = JOptionPane.showInputDialog("Introduce una fecha en el formato dd/MM/yyyy:");
+                    gestionFechas.agregarFecha(fecha);
+                }
+            });
+            panel.add(agregarFechaButton);
+
+            JButton listarFechasButton = new JButton("Listar fechas");
+            listarFechasButton.setBounds(10, 370, 160, 25);
+            listarFechasButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    List<String> fechasOrdenadas = gestionFechas.obtenerFechasOrdenadas();
+                    JOptionPane.showMessageDialog(null, "Fechas ordenadas: " + fechasOrdenadas);
+                }
+            });
+            panel.add(listarFechasButton);
 
         JButton sumatoriaButton = new JButton("Calcular sumatoria");
         sumatoriaButton.setBounds(10, 10, 160, 25);
@@ -140,4 +165,5 @@ public class MAIN {
         });
         panel.add(buscarPalabraButton);
     }
+
 }
