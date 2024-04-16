@@ -1,13 +1,16 @@
 package OptimizacionDeProcesos;
 
 import java.util.Random;
+import java.util.Arrays;
 
 public class QuickSortOptimizado {
     private static final int UMBRAL_INSERCION = 10;
     private static final Random RAND = new Random();
 
     public static void quicksort(int[] array) {
+        System.out.println("\nArray inicial: " + Arrays.toString(array));
         quicksort(array, 0, array.length - 1);
+        System.out.println("\nArray ordenado: " + Arrays.toString(array));
     }
 
     private static void quicksort(int[] array, int inicio, int fin) {
@@ -46,6 +49,12 @@ public class QuickSortOptimizado {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
+        System.out.println(Arrays.toString(array));
+        try {
+            Thread.sleep(1000);  // Pausa de un segundo
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void insercion(int[] array, int inicio, int fin) {
@@ -60,5 +69,15 @@ public class QuickSortOptimizado {
 
             array[j] = valorActual;
         }
+    }
+
+    public static int[] generarArrayAleatorio() {
+        Random rand = new Random();
+        int tamano = rand.nextInt(100);  // Genera un tamaño aleatorio para el array
+        int[] array = new int[tamano];
+        for (int i = 0; i < tamano; i++) {
+            array[i] = rand.nextInt(51);  // Genera números aleatorios entre 0 y 50
+        }
+        return array;
     }
 }

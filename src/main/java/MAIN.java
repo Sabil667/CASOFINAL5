@@ -5,12 +5,14 @@ import AnalisisGenomico.ConteoGenes;
 import AnalisisGenomico.CalculoCombinacionesGeneticas;
 import GestionInformacionCientifica.OrganizacionDocumentos;
 import GestionInformacionCientifica.BusquedaTexto;
+import OptimizacionDeProcesos.QuickSortOptimizado;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
+import java.util.Arrays;
 
 public class MAIN {
     public static void main(String[] args) {
@@ -164,6 +166,18 @@ public class MAIN {
             }
         });
         panel.add(buscarPalabraButton);
+
+        JButton quickSortOptimizadoButton = new JButton("Ordenar con QuickSort Optimizado");
+        quickSortOptimizadoButton.setBounds(10, 410, 250, 25);
+        quickSortOptimizadoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int[] datos = QuickSortOptimizado.generarArrayAleatorio();
+                QuickSortOptimizado.quicksort(datos);
+            }
+        });
+        panel.add(quickSortOptimizadoButton);
     }
+
 
 }
