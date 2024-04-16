@@ -29,155 +29,93 @@ public class MAIN {
 
     private static void placeComponents(JPanel panel) {
         panel.setLayout(null);
-            GestionFechas gestionFechas = new GestionFechas();
 
-            JButton agregarFechaButton = new JButton("Agregar fecha");
-            agregarFechaButton.setBounds(10, 330, 160, 25);
-            agregarFechaButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String fecha = JOptionPane.showInputDialog("Introduce una fecha en el formato dd/MM/yyyy:");
-                    gestionFechas.agregarFecha(fecha);
-                }
-            });
-            panel.add(agregarFechaButton);
+        // Crear un JComboBox con todas las opciones
+        String[] opciones = {"Agregar fecha", "Listar fechas", "Calcular sumatoria", "Listar números", "Calcular potencia", "Encontrar máximo", "Contar genes", "Calcular combinaciones genéticas", "Ordenar Documentos", "Buscar Palabra", "Ordenar con QuickSort Optimizado"};
+        JComboBox<String> comboBox = new JComboBox<>(opciones);
+        comboBox.setBounds(10, 130, 200, 25);  // Colocar en el medio de la interfaz de usuario
+        panel.add(comboBox);
 
-            JButton listarFechasButton = new JButton("Listar fechas");
-            listarFechasButton.setBounds(10, 370, 160, 25);
-            listarFechasButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    List<String> fechasOrdenadas = gestionFechas.obtenerFechasOrdenadas();
-                    JOptionPane.showMessageDialog(null, "Fechas ordenadas: " + fechasOrdenadas);
-                }
-            });
-            panel.add(listarFechasButton);
-
-        JButton sumatoriaButton = new JButton("Calcular sumatoria");
-        sumatoriaButton.setBounds(10, 10, 160, 25);
-        sumatoriaButton.addActionListener(new ActionListener() {
+        // Agregar un ActionListener al JComboBox
+        comboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String input = JOptionPane.showInputDialog("Introduce un número para calcular la sumatoria:");
-                int n = Integer.parseInt(input);
-                int resultadoSumatoria = SumatoriaListadoNumeros.sumatoria(n);
-                JOptionPane.showMessageDialog(null, "El resultado de la sumatoria es: " + resultadoSumatoria);
-            }
-        });
-        panel.add(sumatoriaButton);
-
-        JButton listarNumerosButton = new JButton("Listar números");
-        listarNumerosButton.setBounds(10, 50, 160, 25);
-        listarNumerosButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputInicio = JOptionPane.showInputDialog("Introduce el número de inicio:");
-                int inicio = Integer.parseInt(inputInicio);
-                String inputFin = JOptionPane.showInputDialog("Introduce el número de fin:");
-                int fin = Integer.parseInt(inputFin);
-                SumatoriaListadoNumeros.listarNumeros(inicio, fin);
-            }
-        });
-        panel.add(listarNumerosButton);
-
-        JButton potenciaButton = new JButton("Calcular potencia");
-        potenciaButton.setBounds(10, 90, 160, 25);
-        potenciaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int resultadoPotencia = CalculoPotenciasYmaximos.potencia();
-                JOptionPane.showMessageDialog(null, "Resultado Potencia: " + resultadoPotencia);
-            }
-        });
-        panel.add(potenciaButton);
-
-        JButton maximoButton = new JButton("Encontrar máximo");
-        maximoButton.setBounds(10, 130, 160, 25);
-        maximoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String input = JOptionPane.showInputDialog("Introduce los números separados por comas:");
-                String[] numerosString = input.split(",");
-                int[] datos = new int[numerosString.length];
-                for (int i = 0; i < numerosString.length; i++) {
-                    datos[i] = Integer.parseInt(numerosString[i]);
-                }
-                int resultadoMaximo = CalculoPotenciasYmaximos.encontrarMaximo(datos);
-                JOptionPane.showMessageDialog(null, "Resultado Máximo: " + resultadoMaximo);
-            }
-        });
-        panel.add(maximoButton);
-
-        JButton genesButton = new JButton("Contar genes");
-        genesButton.setBounds(10, 170, 160, 25);
-        genesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String adn = JOptionPane.showInputDialog("Introduce una cadena de ADN:");
-                int conteoGenes = ConteoGenes.contarGenes(adn);
-                JOptionPane.showMessageDialog(null, "La cadena de ADN '" + adn + "' tiene " + conteoGenes + " genes.");
-            }
-        });
-        panel.add(genesButton);
-
-        JButton combinacionesButton = new JButton("Calcular combinaciones genéticas");
-        combinacionesButton.setBounds(10, 210, 250, 25);
-        combinacionesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String input = JOptionPane.showInputDialog("Introduce el número de generaciones:");
-                int generaciones = Integer.parseInt(input);
-                int resultadoCombinaciones = CalculoCombinacionesGeneticas.calcularCombinaciones(generaciones);
-                JOptionPane.showMessageDialog(null, "El número de combinaciones genéticas para " + generaciones + " generaciones es: " + resultadoCombinaciones);
-            }
-        });
-        panel.add(combinacionesButton);
-
-        JButton ordenarDocumentosButton = new JButton("Ordenar Documentos");
-        ordenarDocumentosButton.setBounds(10, 250, 200, 25);
-        ordenarDocumentosButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
-                int returnValue = fileChooser.showOpenDialog(null);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
-                    OrganizacionDocumentos.ordenarDocumentos(selectedFile.getPath());
+                String opcionSeleccionada = (String) comboBox.getSelectedItem();
+                switch (opcionSeleccionada) {
+                    case "Agregar fecha":
+                        GestionFechas gestionFechas = new GestionFechas();
+                        String fecha = JOptionPane.showInputDialog("Introduce una fecha en el formato dd/MM/yyyy:");
+                        gestionFechas.agregarFecha(fecha);
+                        break;
+                    case "Listar fechas":
+                        GestionFechas gestionFechasListar = new GestionFechas();
+                        List<String> fechasOrdenadas = gestionFechasListar.obtenerFechasOrdenadas();
+                        JOptionPane.showMessageDialog(null, "Fechas ordenadas: " + fechasOrdenadas);
+                        break;
+                    case "Calcular sumatoria":
+                        String input = JOptionPane.showInputDialog("Introduce un número para calcular la sumatoria:");
+                        int n = Integer.parseInt(input);
+                        int resultadoSumatoria = SumatoriaListadoNumeros.sumatoria(n);
+                        JOptionPane.showMessageDialog(null, "El resultado de la sumatoria es: " + resultadoSumatoria);
+                        break;
+                    case "Listar números":
+                        String inputInicio = JOptionPane.showInputDialog("Introduce el número de inicio:");
+                        int inicio = Integer.parseInt(inputInicio);
+                        String inputFin = JOptionPane.showInputDialog("Introduce el número de fin:");
+                        int fin = Integer.parseInt(inputFin);
+                        SumatoriaListadoNumeros.listarNumeros(inicio, fin);
+                        break;
+                    case "Calcular potencia":
+                        int resultadoPotencia = CalculoPotenciasYmaximos.potencia();
+                        JOptionPane.showMessageDialog(null, "Resultado Potencia: " + resultadoPotencia);
+                        break;
+                    case "Encontrar máximo":
+                        String inputMaximo = JOptionPane.showInputDialog("Introduce los números separados por comas:");
+                        String[] numerosString = inputMaximo.split(",");
+                        int[] datos = new int[numerosString.length];
+                        for (int i = 0; i < numerosString.length; i++) {
+                            datos[i] = Integer.parseInt(numerosString[i]);
+                        }
+                        int resultadoMaximo = CalculoPotenciasYmaximos.encontrarMaximo(datos);
+                        JOptionPane.showMessageDialog(null, "Resultado Máximo: " + resultadoMaximo);
+                        break;
+                    case "Contar genes":
+                        String adn = JOptionPane.showInputDialog("Introduce una cadena de ADN:");
+                        int conteoGenes = ConteoGenes.contarGenes(adn);
+                        JOptionPane.showMessageDialog(null, "La cadena de ADN '" + adn + "' tiene " + conteoGenes + " genes.");
+                        break;
+                    case "Calcular combinaciones genéticas":
+                        String inputGeneraciones = JOptionPane.showInputDialog("Introduce el número de generaciones:");
+                        int generaciones = Integer.parseInt(inputGeneraciones);
+                        int resultadoCombinaciones = CalculoCombinacionesGeneticas.calcularCombinaciones(generaciones);
+                        JOptionPane.showMessageDialog(null, "El número de combinaciones genéticas para " + generaciones + " generaciones es: " + resultadoCombinaciones);
+                        break;
+                    case "Ordenar Documentos":
+                        JFileChooser fileChooser = new JFileChooser();
+                        int returnValue = fileChooser.showOpenDialog(null);
+                        if (returnValue == JFileChooser.APPROVE_OPTION) {
+                            File selectedFile = fileChooser.getSelectedFile();
+                            OrganizacionDocumentos.ordenarDocumentos(selectedFile.getPath());
+                        }
+                        break;
+                    case "Buscar Palabra":
+                        JFileChooser fileChooserBuscar = new JFileChooser();
+                        int returnValueBuscar = fileChooserBuscar.showOpenDialog(null);
+                        if (returnValueBuscar == JFileChooser.APPROVE_OPTION) {
+                            File selectedFile = fileChooserBuscar.getSelectedFile();
+                            String palabraBusqueda = JOptionPane.showInputDialog("Introduce la palabra a buscar:");
+                            BusquedaTexto buscador = new BusquedaTexto(selectedFile.getPath());
+                            boolean encontradoLineal = buscador.busquedaLineal(palabraBusqueda);
+                            boolean encontradoBinario = buscador.busquedaBinaria(palabraBusqueda);
+                            JOptionPane.showMessageDialog(null, "Resultado de la búsqueda lineal: " + encontradoLineal + "\nResultado de la búsqueda binaria: " + encontradoBinario);
+                        }
+                        break;
+                    case "Ordenar con QuickSort Optimizado":
+                        int[] datosQuickSort = QuickSortOptimizado.generarArrayAleatorio();
+                        QuickSortOptimizado.quicksort(datosQuickSort);
+                        break;
                 }
             }
         });
-        panel.add(ordenarDocumentosButton);
-
-        JButton buscarPalabraButton = new JButton("Buscar Palabra");
-        buscarPalabraButton.setBounds(10, 290, 200, 25);
-        buscarPalabraButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
-                int returnValue = fileChooser.showOpenDialog(null);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
-                    String palabraBusqueda = JOptionPane.showInputDialog("Introduce la palabra a buscar:");
-                    BusquedaTexto buscador = new BusquedaTexto(selectedFile.getPath());
-                    boolean encontradoLineal = buscador.busquedaLineal(palabraBusqueda);
-                    boolean encontradoBinario = buscador.busquedaBinaria(palabraBusqueda);
-                    JOptionPane.showMessageDialog(null, "Resultado de la búsqueda lineal: " + encontradoLineal + "\nResultado de la búsqueda binaria: " + encontradoBinario);
-                }
-            }
-        });
-        panel.add(buscarPalabraButton);
-
-        JButton quickSortOptimizadoButton = new JButton("Ordenar con QuickSort Optimizado");
-        quickSortOptimizadoButton.setBounds(10, 410, 250, 25);
-        quickSortOptimizadoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int[] datos = QuickSortOptimizado.generarArrayAleatorio();
-                QuickSortOptimizado.quicksort(datos);
-            }
-        });
-        panel.add(quickSortOptimizadoButton);
     }
-
-
 }
