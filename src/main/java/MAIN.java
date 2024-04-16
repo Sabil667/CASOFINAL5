@@ -8,6 +8,7 @@ import GestionInformacionCientifica.BusquedaTexto;
 import OptimizacionDeProcesos.QuickSortOptimizado;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -20,7 +21,7 @@ public class MAIN {
         frame.setSize(500, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel(new GridBagLayout());
         frame.add(panel);
         placeComponents(panel);
 
@@ -28,13 +29,14 @@ public class MAIN {
     }
 
     private static void placeComponents(JPanel panel) {
-        panel.setLayout(null);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Crear un JComboBox con todas las opciones
         String[] opciones = {"Agregar fecha", "Listar fechas", "Calcular sumatoria", "Listar números", "Calcular potencia", "Encontrar máximo", "Contar genes", "Calcular combinaciones genéticas", "Ordenar Documentos", "Buscar Palabra", "Ordenar con QuickSort Optimizado"};
         JComboBox<String> comboBox = new JComboBox<>(opciones);
-        comboBox.setBounds(10, 130, 200, 25);  // Colocar en el medio de la interfaz de usuario
-        panel.add(comboBox);
+        panel.add(comboBox, gbc);
 
         // Agregar un ActionListener al JComboBox
         comboBox.addActionListener(new ActionListener() {
