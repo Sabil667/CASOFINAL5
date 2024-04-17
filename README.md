@@ -2,11 +2,11 @@ Link de mi repositorio: https://github.com/Sabil667/CASOFINAL5.git
 
 En este Caso Final Integrador he creado un sistema interactivo que ayude a los investigadores en el análisis genómico y la organización de datos científicos incluyendo las cada una de las opciones pedidadas, es decir:
 
-Gestion de Fechas: en donde aparecen dos opciones: Primero la de agregar las fechas que queramos, y luego al seleccionar la segunda opcion de listar fechas, aparecen listadas todas ellas.
+Gestion de Fechas: aparecen dos opciones: Primero la de agregar las fechas que queramos, y luego al seleccionar la segunda opcion de listar fechas, aparecen listadas todas ellas.
 
-Calcular sumatoria: en donde calcula la suma de todos los números naturales desde n hasta 1 de manera recursiva.
+Calcular sumatoria: calcula la suma de todos los números naturales desde n hasta 1 de manera recursiva.
 
-Listar numeros: que se encarga de imprimir todos los números en este rango de manera recursiva. 
+Listar numeros: se encarga de imprimir todos los números en este rango de manera recursiva. 
 
 Calcular la potencia: donde hay que introducir una base y un exponente y al final te da el resultado
 
