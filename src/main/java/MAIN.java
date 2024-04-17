@@ -12,10 +12,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
 public class MAIN {
+    // Crear una lista para almacenar las fechas
+    private static List<String> fechas = new ArrayList<>();
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Menú");
         frame.setSize(500, 300);
@@ -50,14 +54,11 @@ public class MAIN {
                 String opcionSeleccionada = (String) comboBox.getSelectedItem();
                 switch (opcionSeleccionada) {
                     case "Agregar fecha":
-                        GestionFechas gestionFechas = new GestionFechas();
                         String fecha = JOptionPane.showInputDialog("Introduce una fecha en el formato dd/MM/yyyy:");
-                        gestionFechas.agregarFecha(fecha);
+                        fechas.add(fecha);
                         break;
                     case "Listar fechas":
-                        GestionFechas gestionFechasListar = new GestionFechas();
-                        List<String> fechasOrdenadas = gestionFechasListar.obtenerFechasOrdenadas();
-                        JOptionPane.showMessageDialog(null, "Fechas ordenadas: " + fechasOrdenadas);
+                        JOptionPane.showMessageDialog(null, "Fechas: " + fechas);
                         break;
                     case "Calcular sumatoria":
                         String input = JOptionPane.showInputDialog("Introduce un número para calcular la sumatoria:");
