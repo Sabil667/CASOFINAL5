@@ -33,6 +33,11 @@ public class MAIN {
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
+        // Crear un JLabel para el título
+        JLabel titulo = new JLabel("Menú de Investigadores");
+        titulo.setFont(new Font("Arial", Font.BOLD, 24));
+        panel.add(titulo, gbc);
+
         // Crear un JComboBox con todas las opciones
         String[] opciones = {"Agregar fecha", "Listar fechas", "Calcular sumatoria", "Listar números", "Calcular potencia", "Encontrar máximo", "Contar genes", "Calcular combinaciones genéticas", "Ordenar Documentos", "Buscar Palabra", "Ordenar con QuickSort Optimizado"};
         JComboBox<String> comboBox = new JComboBox<>(opciones);
